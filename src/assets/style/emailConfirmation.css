@@ -1,0 +1,68 @@
+
+.flex-center-xy {
+  justify-content: center;
+  align-items: center;
+}
+.bg-theme-blue {
+  background-color: #0077ee;
+}
+.h-100vp {
+  height: 100vh;
+}
+.flex-col {
+  flex-direction: column;
+}
+.px-15 {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.content-div {
+  background-color: #ffffff;
+  border-radius: 20px;
+  height: 450px;
+  width: 650px;
+  box-shadow: -11px -13px 26px #016cd7, 16px 17px 9px #0875e2;
+  font-family: Roboto;
+  font-style: normal;
+}
+.message {
+  color: #747474;
+  margin-bottom: 0;
+  line-height: 20px;
+}
+.no-email-msg {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 19px;
+  color: #434343;
+  margin-top: 10px;
+}
+.btn-div {
+  margin-top: 15px;
+}
+.userNameText {
+  color: #0077ee;
+  font-weight: 500;
+}
+.heading-color {
+  color: #434343;
+}
+.envelope-icon {
+  height: 70px;
+  margin-bottom: 30px;
+}
+.btn-div .confirm-btn {
+  border: 1px solid transparent !important;
+  border-color: #0077ee !important;
+  background-color: #0077ee !important;
+  border-radius: 5px;
+  padding: 6.4px 90px;
+  height: 45px;
+}
+
+.btn-div .confirm-btn:hover,
+.confirm-btn:focus {
+  color: #fff !important;
+  border-color: #1a8cff !important;
+  background: #1a8cff !important;
+}

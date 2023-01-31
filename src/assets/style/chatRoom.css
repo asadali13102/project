@@ -1,0 +1,173 @@
+/* .ant-avatar-sm{
+
+} */
+.chat-room-width {
+  height: calc(100vh - 300px);
+  /* height: 60vh; */
+}
+.chat-section {
+  padding: 11px 15px;
+}
+
+
+.commentBox {
+  width: 123px;
+  height: 31px;
+  border: 1px solid #a1a1a1;
+  border-radius: 5px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 10px;
+  gap: 14px;
+  isolation: isolate;
+  /* position: absolute; */
+  right: 30px;
+  position: absolute;
+  right: 30px;
+  /* top: 20px; */
+}
+
+.hide{
+    display: none;
+}
+
+.commentSection:hover + .hide{
+    display: flex;
+    /* background-color: rgba(0, 127, 255, 0.03); */
+  }
+
+  .chat-textarea{
+    width: 100%;
+    border: none;
+  }
+  .chat-textarea:focus-visible {
+    outline: none;
+}
+
+/*//////////////////////////////////*/
+
+/* subchatArea css */
+.main{
+  background-color:#161B25;
+  width: 261px;
+  height: 400px;
+  border-radius: 10px;
+  font-family: 'Roboto';
+  font-size: 12px;
+}
+.header{
+  border-bottom: 2px solid white;
+  border-color: #5b5858;
+  width: 261px;
+  height: 50px;
+  color: white;
+
+  
+
+}
+.time{
+  color: white;
+float: right;
+padding: 12px;
+margin-top: -35px;
+font-size: 8px;
+}
+.item{
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+
+}
+
+.imag{
+  width: 26px;
+  height: 26px;
+ 
+}
+
+.imag1{
+  width: 18px;
+  height: 18px;
+}
+
+.header-text{
+  font-size: 12px;
+  font-weight: 700;
+  margin-left: 8px;
+  margin-top:4px;
+  float: left;
+}
+.right{
+  display: flex;
+  float: right;
+  margin-top: -45px;
+  
+}
+
+.section{
+  display: flex;
+  flex-direction: row;
+  color: white;
+  padding-top: 10px;
+}
+.chat{
+  color: white;
+  margin-left:36px;
+  font-size: 12px;
+  line-height: 14px;
+  margin-right: 5px;
+}
+.text{
+  margin-top:-5px ;
+  line-height: 14px;
+  
+}
+.reply{
+  border-left:2px solid #0077EE;
+  padding-left: 10px;
+  margin-left: 10px;
+}
+.replies{
+  color: #0077EE;
+  font-size:8px;
+  float:right;
+  margin-right:5px;
+  margin-top: -25px;
+  padding: 2px;
+  display: flex;
+  flex-direction: row;
+}
+.bottom{
+  border-top: 2px solid white;
+  border-color: #5b5858;
+  width: 261px;
+  height: 50px;
+  color: white;
+  margin-top: 50px;
+  padding: 10px;
+}
+.input{
+  border-radius: 10px;
+  padding: 5px, 10px, 5px, 10px;
+  width: 115px;
+  margin-right: 30px;
+  border: 1px solid #434343;
+  background-color: #262B34;
+  float: right;
+  background: 
+    url("../../../public/images/icons/smilie.svg")
+    no-repeat 93px center;
+}
+
+.inpt-img{
+float: right;
+margin-left: 250px;
+margin-top: -20px;
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}

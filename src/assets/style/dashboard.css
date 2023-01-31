@@ -1,0 +1,100 @@
+.heading-card {
+  box-sizing: border-box;
+  flex-direction: row;
+  align-items: center;
+  padding: 13px 10px;
+  width: 360px;
+  height: auto;
+  background: #ffffff;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.07);
+  border-radius: 6px;
+  margin-bottom: 30px;
+}
+.card-number {
+  justify-content: center;
+  align-items: center;
+  padding: 0px 10px;
+  width: 32px;
+  height: 24px;
+  margin-left: 10px;
+  border: 1px solid #d6d6d6;
+  border-radius: 35px;
+}
+.task-card{
+  padding: 18px;
+  box-sizing: border-box;
+  flex-direction: row;
+  align-items: center;
+  width: 360px;
+  height: auto;
+  background: #ffffff;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.07);
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+.hor-line{
+  width: 60px;
+  height: 0px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+.task-image-div{
+  width: 120px;
+height: 80px;
+border: 1px solid #D6D6D6;
+border-radius: 6px;
+margin-top: 15px;
+}
+.task-btn{
+  width: 90%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin-top: 2vh;
+}
+.btn-1{
+  display: flex;
+  justify-content: center;
+align-items: center;
+padding: 8px 10px;
+width: auto;
+height: 35px;
+border: 1px solid #D6D6D6;
+border-radius: 6px;
+box-sizing: border-box;
+background-color: #ffffff;
+}
+.btn-2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 10px;
+  width: auto;
+  height: 26px;
+  border: 1px solid #D6D6D6;
+  border-radius: 6px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+}
+.model-input{
+  box-sizing: border-box;
+  flex-direction: row;
+  align-items: center;
+  padding: 13px 10px;
+  width: 100%;
+  height: auto;
+  border: 1px solid transparent;
+  background: #ffffff;
+  box-shadow: 0px 2px 10px rgb(0 0 0 / 7%);
+  border-radius: 6px;
+}
+.ant-modal-body{
+  background-color: #FBFBFB;
+}
+.ant-notification-notice, .ant-notification-notice-info, .ant-notification-notice-closable, .ant-notification-notice-message{
+  background-color: #FBFBFB !important;
+  color: #434343 !important;
+}
+
+
+
