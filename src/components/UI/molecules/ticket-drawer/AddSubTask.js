@@ -2,30 +2,15 @@ import React, { useState } from "react";
 import { Tooltip, Calendar } from "antd";
 import { connect, useDispatch } from "react-redux";
 import Icon from "../../atoms/global/Icon";
-import { addTask, setTaskProperties } from "../../../../actions";
-import useSound from "use-sound";
-import success from "../../../../assets/sounds/noti.mp3";
+import { setTaskProperties } from "../../../../actions";
 
 const AddSubTask = (props) => {
   const [isCalender, setIsCalender] = useState(false);
-  
-  const dispatch = useDispatch();
-  const [play] = useSound(success);
 
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    dispatch(addTask(props.taskProperties,()=>{
-        play();
-        setIsCalender(false)
-        props.setIsComponentVisible(false)
-    } ));
-    dispatch(
-      setTaskProperties({
-        ...props.taskProperties,
-        taskTitle: "",
-      })
-    );
+    e.preventDefault();
   };
   return (
     <form onSubmit={handleSubmit}>
@@ -50,8 +35,6 @@ const AddSubTask = (props) => {
                     taskTitle: e.target.value,
                   })
                 );
-                
-                
               }}
               required
               autoFocus

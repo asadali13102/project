@@ -1,46 +1,19 @@
 const data = {
-    success : "",
-    error: "",
-    getSections: [],
-    isDuplicateField: false
-  };
-  
-  const sectionReducer = (state = data, action) => {
-    switch (action.type) {
-      case "success":
-        return {
-          ...state,
-          success: action.payload,
-        };
+  success: "",
+  error: "",
+  getSections: [],
+  isDuplicateField: false,
+};
 
-      case "error":
-        return {
-          ...state,
-          error: action.payload,
-        };
-
-      case "getSections":
-        return {
-          ...state,
-          getSections: action.payload,
-        };
-
-      case "isDuplicateField":
-        return {
-          ...state,
-          isDuplicateField: action.payload,
-        };
-
-      case "logout":
-        return {
-          ...state,
-          getSections: []
-        };
-
-  
-      default:
-        return state;
-    }
-  };
-  export default sectionReducer;
-  
+const sectionReducer = (state = data, action) => {
+  switch (action.type) {
+    case "getSections":
+      return {
+        ...state,
+        getSections: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+export default sectionReducer;

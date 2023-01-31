@@ -1,22 +1,10 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
 import Icon from "../../atoms/global/Icon";
-import socket from "../../../../js/socket";
 
 const ChatDrawerTextArea = () => {
   const [comment, setComment] = useState("");
-  const User = useSelector((state) => state.signupReducer);
-  const ID = useSelector((state) => state.messageIdReducer);
   
   const handleSubmit = () => {
-    const msg = {
-      sender: { _id: User.response.data.userId },
-      messageDescription: comment,
-      messageId: ID.msgId,
-    };
-    socket.emit("message", msg);
-    //console.log("msg send from drawer");
-    setComment("");
   };
 
   return (

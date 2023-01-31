@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { isChatOpen, msgId } from "../../../../actions";
+import { isChatOpen } from "../../../../actions";
 import ReplyAvatar from "../../atoms/ticket-drawer/ReplyAvatar";
-import TimeAgo from "javascript-time-ago";
-import en from "javascript-time-ago/locale/en";
 
 const CommentSection = (props) => {
   const dispatch = useDispatch();
@@ -11,11 +9,7 @@ const CommentSection = (props) => {
 
   const openChat = () => {
     dispatch(isChatOpen(true));
-    dispatch(msgId(props.msgId));
   };
-
-  let count = 0;
-  let time;
 
   function replaceWithBr(val) {
     return val.replace(/\n/g, "<br />");
@@ -50,39 +44,6 @@ const CommentSection = (props) => {
             }}
           />
 
-          {props.comments &&
-            props.comments.res.body &&
-            props.comments.res.body.data.forEach((msg) => {
-              if (msg.messageId === props.msgId) {
-                count++;
-                let lastmsg = msg;
-                let date = new Date(lastmsg.createdAt);
-                TimeAgo.addLocale(en);
-                const timeAgo = new TimeAgo("en-US");
-                time = timeAgo.format(date);
-              }
-            })}
-          {count > 0 && (
-            <div className="d-flex align-center" style={{ marginTop: "8px" }}>
-              <ReplyAvatar />
-              <div
-                className="font-12"
-                color="#434343"
-                onClick={openChat}
-                style={{
-                  marginLeft: "6px",
-                  marginRight: "6px",
-                  cursor: "pointer",
-                }}
-              >
-                {count === 1 ? `${count} reply` : `${count} replies`}
-              </div>
-              <div className="font-12" style={{ color: "#747474" }}>
-                last reply {time}
-              </div>
-            </div>
-          )}
-
           <div className="d-flex align-center" style={{ marginTop: "8px" }}>
             <ReplyAvatar />
             <div
@@ -101,26 +62,8 @@ const CommentSection = (props) => {
               last reply 21 hours age
             </div>
           </div>
-
-          {/* {!count && (reply ? (
-            <div
-              onClick={openChat}
-              className="font-12"
-              style={{
-                color: "blue",
-                marginTop: "5px",
-                cursor: "pointer",
-              }}
-            >
-              reply
-            </div>
-          ) : (
-            ""
-          ))} */}
         </div>
       </div>
-      {/* display side box on hover */}
-      {/* <div className="commentBox hide"></div> */}
       <div>{props.children}</div>
     </div>
   );

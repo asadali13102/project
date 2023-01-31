@@ -1,15 +1,6 @@
 import React from "react";
 
 const IconAndName = (props) => {
-  // props..........
-  // mb
-  // mr
-  // height
-  // src
-  // class
-  // color
-  // name
-  // iconFuction
   return (
     <div
       className={props.phase === "sideNav" ? "d-flex" : "d-flex align-center"}

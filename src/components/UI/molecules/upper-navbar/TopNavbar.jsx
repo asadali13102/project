@@ -1,35 +1,20 @@
 import React, { useState } from "react";
 import Icon from "../../atoms/global/Icon";
-import { Link, useParams } from "react-router-dom";
+import { Link} from "react-router-dom";
 import GroupAvatar from "../../atoms/side-navbar/GroupAvatar";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import ProfileAndName from "../../atoms/ticket-drawer/ProfileAndName";
 import { Dropdown } from "antd";
-// import { logout } from "../../../../actions/logoutAction";
 import CalenderNotification from "./CalenderNotification";
 
 const TopNavbar = (props) => {
-  const param = useParams();
   const toggle = useSelector((state) => state.navReducer.toggle);
-  // const dispatch = useDispatch();
-  const roomData = useSelector((state) => state.roomReducer);
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
-  // const handleLogout = () => {
-  //   localStorage.removeItem("token");
-  //   dispatch(logout());
-  //   window.location.href = "/signin";
-  // };
 
   const items = [
     {
       key: "1",
-      label: (
-        <div
-        // onClick={handleLogout}
-        >
-          Log out!
-        </div>
-      ),
+      label: <div>Log out!</div>,
     },
   ];
 
@@ -50,22 +35,6 @@ const TopNavbar = (props) => {
               src="profile.png"
             />
           </div>
-          {roomData.rooms.map((room) => {
-            if (room._id === param.userid) {
-              return (
-                <div key={room._id}>
-                  <ProfileAndName
-                    height="40px"
-                    name={room.roomTitle}
-                    class="font-20"
-                    src="profile.png"
-                  />
-                </div>
-              );
-            } else {
-              return "";
-            }
-          })}
           <div className="d-flex align-center">
             <Icon name="black-arrow-down.svg" height="6px" pl="6px" pr="14px" />
             <Icon name="ticket-pin2.svg" height="18px" />

@@ -1,16 +1,12 @@
 import React from "react";
 import Icon from "../../atoms/global/Icon";
 import { connect, useDispatch } from "react-redux";
-import { editTask, getSingleTask, isTicketOpen } from "../../../../actions";
-import useSound from "use-sound";
-import editSound from "../../../../assets/sounds/editSound.mp3";
+import { isTicketOpen } from "../../../../actions";
 
 const TaskCard = (props) => {
   const dispatch = useDispatch();
   const openTicket = () => {
     dispatch(isTicketOpen(true));
-    console.log("b");
-    dispatch(getSingleTask(props.taskId));
   };
 
   const arrMonth = [
@@ -31,7 +27,6 @@ const TaskCard = (props) => {
   let diMonth = new Date(props.date).getMonth();
   let month = arrMonth[diMonth].substring(0, 3);
   let date = day + " " + month;
-  const [editEffect] = useSound(editSound);
   return (
     <div className="task-card" onClick={openTicket}>
       <div
@@ -43,15 +38,6 @@ const TaskCard = (props) => {
           <div
             style={{ marginTop: "4px" }}
             onClick={() => {
-              dispatch(
-                editTask(
-                  {
-                    isCompleted: !props.isCompleted,
-                    _id: props.taskId
-                  },
-                  () => editEffect()
-                )
-              );
             }}
           >
             <svg

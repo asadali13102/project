@@ -1,19 +1,16 @@
 import { Menu } from "antd";
 import React from "react";
-// import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const MenuDropDown = () => {
   const navigate = useNavigate();
-  // const toggle = useSelector((state) => state.navReducer.toggle);
-  
+
   const navigateHandler = (e) => {
     switch (e.keyPath.pop()) {
-      case 'chat':
-        return  navigate(`/chat/${e.keyPath[0]}`);
-    
+      case "chat":
+        return navigate(`/chat/${e.keyPath[0]}`);
       default:
-        navigate(`/`)
+        navigate(`/`);
     }
   };
 
@@ -21,7 +18,7 @@ const MenuDropDown = () => {
     <>
       <Menu
         onClick={navigateHandler}
-        defaultOpenKeys={['workSpaces','sub1',"chat"]}
+        defaultOpenKeys={["workSpaces", "sub1", "chat"]}
         mode="inline"
       />
     </>

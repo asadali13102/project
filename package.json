@@ -1,5 +1,5 @@
 {
-  "homepage":"http://asadali13102.github.io/project",
+  "homepage":"http://asadali13102.github.io",
   "name": "sampleproject",
   "version": "0.1.0",
   "private": true,
@@ -21,7 +21,6 @@
     "react18-input-otp": "^1.1.1",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.2",
-    "socket.io-client": "^4.5.3",
     "use-sound": "^4.0.1",
     "web-vitals": "^2.1.4"
   },

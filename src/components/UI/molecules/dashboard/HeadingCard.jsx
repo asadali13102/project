@@ -2,42 +2,24 @@ import React, { useState } from "react";
 import Icon from "../../atoms/global/Icon";
 import { Dropdown } from "antd";
 import { useDispatch } from "react-redux";
-import {
-  editSection,
-  isTicketOpen,
-  setTaskProperties,
-} from "../../../../actions";
+import { isTicketOpen, setTaskProperties } from "../../../../actions";
 import ModelConfirm from "../global/ModelConfirm";
 import useSound from "use-sound";
 import deleteSound from "../../../../assets/sounds/deleteSound.mp3";
-import editSound from '../../../../assets/sounds/editSound.mp3'
 
 const HeadingCard = (props) => {
   const [open, setOpen] = useState(false);
- 
+
   const dispatch = useDispatch();
   const [play] = useSound(deleteSound);
-  const [editEffect] = useSound(editSound)
 
   const enableEditting = () => {
     props.setSectionTitle(props.title);
     props.setphase(props.id);
-  }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let obj = {
-      _id: props.id,
-      title: props.sectionTitle,
-    };
-    dispatch(
-      editSection(obj, () => {
-        props.setSectionTitle("");
-        editEffect();
-        props.setphase("display");
-        props.editSection();
-      })
-    );
   };
 
   const deleteHandler = () => {
@@ -50,13 +32,7 @@ const HeadingCard = (props) => {
   const items = [
     {
       key: "1",
-      label: (
-        <div
-          onClick={enableEditting}
-        >
-          Edit Section
-        </div>
-      ),
+      label: <div onClick={enableEditting}>Edit Section</div>,
     },
     {
       key: "2",
@@ -80,7 +56,7 @@ const HeadingCard = (props) => {
         style={{ alignItems: "center" }}
       >
         <div className="d-flex align-center">
-          { props.phase === props.id ? (
+          {props.phase === props.id ? (
             <form onSubmit={handleSubmit} onBlur={handleSubmit}>
               <input
                 autoFocus
@@ -91,11 +67,13 @@ const HeadingCard = (props) => {
                 type="text"
               />
             </form>
-          ): (
+          ) : (
             <>
-            <div className="font-18" onClick={enableEditting} >{props.title}</div>
-            <div className="card-number">{props.number}</div>
-          </>
+              <div className="font-18" onClick={enableEditting}>
+                {props.title}
+              </div>
+              <div className="card-number">{props.number}</div>
+            </>
           )}
         </div>
         <div className="d-flex align-center">
@@ -110,7 +88,7 @@ const HeadingCard = (props) => {
                   ...props.taskProperties,
                   section: props.id,
                   project: props.projectTitle,
-                  workspace: props.workspaceTitle
+                  workspace: props.workspaceTitle,
                 })
               );
               props.addTaskHadler(props.sectionKey, "top");

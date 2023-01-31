@@ -1,23 +1,9 @@
 import React, { useState } from "react";
-import { useEffect } from "react";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {
-  addRoom,
-  addWorkspace,
-  getRooms,
-  getWorkspaces,
-  addProject,
-} from "../../../../actions";
 
 const DropDownMenu = (props) => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    dispatch(getRooms());
-    dispatch(getWorkspaces());
-  }, [dispatch]);
 
   const [chatCollaps, setChatCollaps] = useState(true);
   const [workSpaceCollaps, setWorkSpaceCollaps] = useState({
@@ -25,46 +11,9 @@ const DropDownMenu = (props) => {
     phase: "key1",
   });
 
-  const User = useSelector((state) => state.signupReducer.response);
+  const handleChatRoom = () => {};
 
-  const handleChatRoom = () => {
-    const data = {
-      roomTitle: "",
-      roomDescription: "",
-      roomType: "",
-      participants: "",
-    };
-    data.roomTitle = prompt("Room Title");
-    data.roomDescription = prompt("Room description");
-    data.roomType = prompt("Room Type");
-    const receiver = prompt("Participent");
-    data.participants = [{ member: receiver }, { member: User.data.userId }];
-    dispatch(addRoom(data));
-  };
-
-  const roomData = useSelector((state) => state.roomReducer);
-
-  const handleWorkspace = () => {
-    const workspaceTitle = prompt("Workspace Title");
-    dispatch(
-      addWorkspace({ title: workspaceTitle }, () => {
-        dispatch(getWorkspaces());
-      })
-    );
-  };
-
-  const workSpaceData = useSelector(
-    (state) => state.workspaceReducer.getWorkspaces
-  );
-
-  const projectHandler = (id) => {
-    const projectTitle = prompt("Project Title");
-    dispatch(
-      addProject({ title: projectTitle, workspace: id }, () => {
-        dispatch(getWorkspaces());
-      })
-    );
-  };
+  const handleWorkspace = () => {};
 
   const handleSections = (id) => {
     navigate(`/project/${id}`);
@@ -516,118 +465,6 @@ const DropDownMenu = (props) => {
             </div>
           </div>
         </div>
-
-        {/* ..............Dynamic workspace and projects start from here.............. */}
-
-        {workSpaceData &&
-          workSpaceData.map((workspace, key) => {
-            key = key + 4;
-            return (
-              <div
-                key={key}
-                className={
-                  workSpaceCollaps.phase === `key${key}`
-                    ? "dropDownShow mt-14"
-                    : "subDropDown mt-14"
-                }
-              >
-                {props.toggle ? (
-                  <div className="d-flex align-center justify-content-between cursor-pointer ">
-                    <div>
-                      <img
-                        src="/images/icons/siteCreation.png"
-                        style={{ height: "25px", marginRight: "10px" }}
-                        alt="icon"
-                        onClick={() => projectHandler(workspace._id)}
-                      />
-                      <span
-                        className="font-16"
-                        onClick={() => projectHandler(workspace._id)}
-                      >
-                        {workspace.title}
-                      </span>
-                    </div>
-                    <div>
-                      <img
-                        src={`/images/icons/${
-                          workSpaceCollaps.phase === `key${key}`
-                            ? "whiteArrowUp.svg"
-                            : "whiteArrowDown.svg"
-                        }`}
-                        style={{ marginRight: "10px" }}
-                        alt="icon"
-                        onClick={() =>
-                          setWorkSpaceCollaps({
-                            ...workSpaceCollaps,
-                            phase:
-                              workSpaceCollaps.phase === `key${key}`
-                                ? ""
-                                : `key${key}`,
-                          })
-                        }
-                      />
-                    </div>
-                  </div>
-                ) : (
-                  <div
-                    className="cursor-pointer"
-                    style={{ lineHeight: "10px", textAlign: "center" }}
-                  >
-                    <img
-                      src="/images/icons/siteCreation.png"
-                      style={{ height: "25px" }}
-                      alt="icon"
-                      onClick={() => projectHandler(workspace._id)}
-                    />
-                    <img
-                      src={`/images/icons/${
-                        workSpaceCollaps.phase === `key${key}`
-                          ? "whiteArrowUp.svg"
-                          : "whiteArrowDown.svg"
-                      }`}
-                      alt="icon"
-                      onClick={() =>
-                        setWorkSpaceCollaps({
-                          ...workSpaceCollaps,
-                          phase:
-                            workSpaceCollaps.phase === `key${key}`
-                              ? ""
-                              : `key${key}`,
-                        })
-                      }
-                    />
-                  </div>
-                )}
-
-                {/* ................Project Start................. */}
-                <div style={{ marginLeft: props.toggle ? "" : "3px" }}>
-                  {workspace.projects &&
-                    workspace.projects.map((project, key) => {
-                      return (
-                        <div
-                          key={key}
-                          className="d-flex align-center cursor-pointer mt-14"
-                          onClick={() => handleSections(project._id)}
-                        >
-                          <img
-                            src="/images/icons/US.png"
-                            alt="icon"
-                            className="mr-10"
-                          />
-                          <div
-                            className={
-                              props.toggle ? "font-16" : "display-none"
-                            }
-                          >
-                            {project.title}
-                          </div>
-                        </div>
-                      );
-                    })}
-                </div>
-              </div>
-            );
-          })}
       </div>
 
       {/* chat collaps .................................................................*/}
@@ -688,11 +525,10 @@ const DropDownMenu = (props) => {
           </div>
         )}
 
-
-{/* .........................Chat area.......................... */}
+        {/* .........................Chat area.......................... */}
 
         <div style={{ marginTop: "23px" }}>
-  {/* .......................static chat................. */}
+          {/* .......................static chat................. */}
           <div
             className="d-flex align-center cursor-pointer mt-13"
             onClick={() => {
@@ -705,14 +541,17 @@ const DropDownMenu = (props) => {
             </div>
           </div>
 
-
           <div
             className="d-flex align-center cursor-pointer mt-13"
             onClick={() => {
               navigate(`/chat/${"63a5804ab053074d8874678e"}`);
             }}
           >
-            <img src="/images/icons/profile2.png" className="mr-10" alt="icon" />
+            <img
+              src="/images/icons/profile2.png"
+              className="mr-10"
+              alt="icon"
+            />
             <div className={props.toggle ? "font-16" : "display-none"}>
               James
             </div>
@@ -753,40 +592,6 @@ const DropDownMenu = (props) => {
               Sara
             </div>
           </div>
-
-    {/* ..................dynamic chat start ........................... */}
-          {roomData.rooms &&
-            roomData.rooms.map((room) => {
-              return room.participants.map((candidate) => {
-                if (
-                  candidate.member &&
-                  candidate.member._id === User.data.userId
-                ) {
-                  return (
-                    <div
-                      key={room._id}
-                      className="d-flex align-center cursor-pointer mt-13"
-                      onClick={() => {
-                        navigate(`/chat/${room._id}`);
-                      }}
-                    >
-                      <img
-                        src="/images/icons/profile.png"
-                        className="mr-10"
-                        alt="icon"
-                      />
-                      <div
-                        className={props.toggle ? "font-16" : "display-none"}
-                      >
-                        {room.roomTitle}
-                      </div>
-                    </div>
-                  );
-                } else {
-                  return "";
-                }
-              });
-            })}
         </div>
       </div>
     </div>

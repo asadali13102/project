@@ -1,32 +1,8 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 import Icon from "../../atoms/global/Icon";
-import socket from "../../../../js/socket";
 
 const ChatTextArea = () => {
-  const param = useParams();
   const [comment, setComment] = useState("");
-
-  const User = useSelector((state) => state.signupReducer);
-  const handleSubmit = () => {
-    const msg = {
-      sender: { _id: User.response.data.userId },
-      messageDescription: comment,
-      messageId: param.userid,
-    };
-    socket.emit("message", msg);
-    //console.log("msg send from chat room");
-    setComment("");
-  };
-
-  const handleKeyUp = (e) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      handleSubmit();
-      return;
-    }
-  };
 
   return (
     <div className="chat-area">
@@ -37,7 +13,6 @@ const ChatTextArea = () => {
         onChange={(e) => {
           setComment(e.target.value);
         }}
-        onKeyDown={(e) => handleKeyUp(e)}
       ></textarea>
       <div className="d-flex justify-content-between">
         <div className="d-flex align-center">
@@ -50,7 +25,7 @@ const ChatTextArea = () => {
           <Icon name="at-the-rate.svg" height="13px" pr="13px" />
           <Icon name="Aa.svg" height="12px" />
         </div>
-        <div onClick={handleSubmit}>
+        <div>
           <Icon name="send.svg" height="13px" />
         </div>
       </div>

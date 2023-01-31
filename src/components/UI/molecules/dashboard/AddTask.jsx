@@ -1,26 +1,16 @@
 import React, { useState } from "react";
 import { Tooltip } from "antd";
-import { addTask, setTaskProperties } from "../../../../actions";
+import { setTaskProperties } from "../../../../actions";
 import { connect, useDispatch } from "react-redux";
 import { Calendar } from "antd";
-import useSound from "use-sound";
-import noti from "../../../../assets/sounds/noti.mp3";
 
 const AddTask = (props) => {
   const [isCalender, setIsCalender] = useState(false);
   const [hover, setHover] = useState("");
   const dispatch = useDispatch();
-  const [play] = useSound(noti);
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(
-      addTask(props.taskProperties, () => {
-        play();
-        setIsCalender(false);
-        props.setIsComponentVisible(false);
-      })
-    );
     dispatch(
       setTaskProperties({
         ...props.taskProperties,
@@ -57,7 +47,6 @@ const AddTask = (props) => {
                 autoFocus
                 type="text"
                 style={{ width: "300px", border: "none", outline: "none" }}
-                // onBlur={handleSubmit}
               />
             </div>
           </div>

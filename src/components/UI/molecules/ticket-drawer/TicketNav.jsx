@@ -1,7 +1,7 @@
 import { Dropdown } from "antd";
 import React from "react";
 import { connect, useDispatch } from "react-redux";
-import { editTask, isTicketOpen } from "../../../../actions";
+import { isTicketOpen } from "../../../../actions";
 import Icon from "../../atoms/global/Icon";
 
 const TicketNav = (props) => {
@@ -31,7 +31,9 @@ const TicketNav = (props) => {
   return (
     <>
       <div className="sub-nav-area d-flex justify-content-between">
-        <div className="font-20">{props.task && props.task.titleIdentifier}</div>
+        <div className="font-20">
+          {props.task && props.task.titleIdentifier}
+        </div>
         <div onClick={closeTicket}>
           <img src="/images/icons/close.svg" alt="close" />
         </div>
@@ -48,17 +50,7 @@ const TicketNav = (props) => {
         <div className="d-flex align-center">
           <div
             className="btn-2"
-            onClick={() => {
-              dispatch(
-                editTask(
-                  {
-                    _id: props.singleTask._id,
-                    isCompleted: !props.singleTask.isCompleted,
-                  },
-                  () => props.editEffect()
-                )
-              );
-            }}
+            onClick={() => {}}
             style={{ cursor: "pointer" }}
           >
             <div className="d-flex align-center">

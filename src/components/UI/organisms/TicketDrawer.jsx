@@ -1,15 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { connect, useDispatch, useSelector } from "react-redux";
-import {
-  isTicketOpen,
-  setTaskProperties,
-  deleteTask,
-  editTask,
-  getSingleTask,
-  getTasks,
-  getUsers,
-  getProjectById,
-} from "../../../actions";
+import React, { useState } from "react";
+import { connect, useDispatch } from "react-redux";
+import { setTaskProperties } from "../../../actions";
 import Button from "../atoms/global/Button";
 import Icon from "../atoms/global/Icon";
 import IconAndName from "../atoms/side-navbar/IconAndName";
@@ -19,72 +10,30 @@ import ReviewWrapper from "../../templates/ReviewWrapper";
 import ChatTextArea from "../molecules/global/ChatTextArea";
 import { getDate } from "../../../js/functions";
 import useSound from "use-sound";
-import deleteSound from "../../../assets/sounds/deleteSound.mp3";
 import ModelConfirm from "../molecules/global/ModelConfirm";
 import { dayMonth } from "../../../js/functions";
 import AddSubTask from "../molecules/ticket-drawer/AddSubTask";
 import useComponentVisible from "../../../js/useComponentVisible";
 import TicketNav from "../molecules/ticket-drawer/TicketNav";
-import socket from "../../../js/socket";
 import editSound from "../../../assets/sounds/editSound.mp3";
 import ProfileAndName from "../atoms/ticket-drawer/ProfileAndName";
 import Select from "react-select";
-import { useParams } from "react-router-dom";
 
 const TicketDrawer = (props) => {
-  const params = useParams();
   const [open, setOpen] = useState(false);
   const [isCalender, setIsCalender] = useState(false);
   const [editPhase, setEditPhase] = useState("");
   const [editedValue, setEditedValue] = useState();
-  const [task, setTask] = useState({});
   const [check, setCheck] = useState(false);
   const [assigneeValue, setAssigneeValue] = useState([]);
-
   const dispatch = useDispatch();
-  const [deleteEffect] = useSound(deleteSound);
   const [editEffect] = useSound(editSound);
+  const task = {};
   const { ref, isComponentVisible, setIsComponentVisible } =
     useComponentVisible(false);
+  const deleteHandler = () => {};
 
-  useEffect(() => {
-    setTask(props.singleTask);
-  }, [task, props.singleTask]);
-
-  useEffect(() => {
-    dispatch(getUsers());
-  }, [dispatch]);
-
-  useEffect(() => {
-    socket.on("UpdateTaskEvent", function (id) {
-      dispatch(getSingleTask(id));
-      dispatch(getTasks());
-      //console.log("update task event");
-    });
-  }, [dispatch]);
-
-  useEffect(() => {
-    socket.on("AddedSubTask", (id) => {
-      dispatch(getSingleTask(id));
-      //console.log("subtask added event");
-    });
-  }, [dispatch]);
-
-  const deleteHandler = () => {
-    dispatch(deleteTask(task._id));
-    dispatch(isTicketOpen(false));
-    deleteEffect();
-  };
-
-  const editHandler = (obj) => {
-    dispatch(
-      editTask(obj, () => {
-        setEditPhase("");
-        setEditedValue("");
-        editEffect();
-      })
-    );
-  };
+  const editHandler = (obj) => {};
 
   const titleHandler = (e) => {
     e.preventDefault();
@@ -116,35 +65,12 @@ const TicketDrawer = (props) => {
     });
   };
 
-  const data = useSelector((state) => state.userReducer);
-
-  const options = data.users.map((user) => {
-    return { value: user._id, label: user.fullName };
-  });
-
+  const options = [{value:"a", label:"Jhon Doe"}]
   const handleAssignee = (users) => {
     setAssigneeValue(users);
   };
 
-  const handleSubmit = () => {
-    let users = [];
-    assigneeValue.forEach((user) => {
-      users = [...users, { assigneeId: user.value }];
-    });
-    dispatch(
-      editTask(
-        {
-          _id: task._id,
-          taskTitle: task.taskTitle,
-          assignee: users,
-        },
-        () => {
-          editEffect();
-          setCheck(false);
-        }
-      )
-    );
-  };
+  const handleSubmit = () => {};
   return (
     <>
       <ModelConfirm
@@ -327,16 +253,6 @@ const TicketDrawer = (props) => {
                             <Calendar
                               fullscreen={false}
                               onChange={(e) => {
-                                dispatch(
-                                  editTask(
-                                    {
-                                      _id: task._id,
-                                      taskTitle: task.taskTitle,
-                                      dueDate: e.format("YYYY-MM-DD"),
-                                    },
-                                    () => editEffect()
-                                  )
-                                );
                                 setIsCalender(false);
                               }}
                             />
@@ -803,21 +719,17 @@ const TicketDrawer = (props) => {
                 <ReviewWrapper>
                   <div className="font-12 review-left-width">Project</div>
                   <div className="d-flex">
-                      <div
-                        className="mr-5 mt-4"
-                        style={{
-                          width: "10px",
-                          height: "10px",
-                          background: "green",
-                          borderRadius: "2px",
-                        }}
-                      ></div>
-                      <div
-                        className="font-12 "
-                      >
-                        UX/UI software
-                      </div>
-                    </div>
+                    <div
+                      className="mr-5 mt-4"
+                      style={{
+                        width: "10px",
+                        height: "10px",
+                        background: "green",
+                        borderRadius: "2px",
+                      }}
+                    ></div>
+                    <div className="font-12 ">UX/UI software</div>
+                  </div>
                 </ReviewWrapper>
 
                 {/* Dependence ....................................................................... */}

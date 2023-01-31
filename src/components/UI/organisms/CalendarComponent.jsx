@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Badge, Calendar, Checkbox } from "antd";
+import { Calendar, Checkbox } from "antd";
 import { useSelector } from "react-redux";
 import SideNavBar from "./SideNavBar";
 import TopNavbar from "../molecules/upper-navbar/TopNavbar";
@@ -147,6 +147,7 @@ const CalendarComponent = () => {
                     <img
                       style={{ height: "6px" }}
                       src="/images/icons/black-arrow-down.svg"
+                      alt="icon"
                     />
                   </span>
                 </div>
@@ -238,6 +239,7 @@ const CalendarComponent = () => {
                   marginBottom: "20px",
                 }}
                 src="/images/icons/blue-lines.svg"
+                alt="icon"
               />
               <div className="text-rotated" style={{ paddingRight: "8px" }}>
                 <span className="text-lettuce">13</span> Unscheduled
